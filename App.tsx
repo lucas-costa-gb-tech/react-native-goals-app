@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 
 export default function App() {
   const [goalText, setGoalText] = useState('');
@@ -10,6 +11,12 @@ export default function App() {
     setGoalList(prevGoals => prevGoals.concat(goalText));
     setGoalText('');
   };
+
+  const renderGoalItem = ({ item }) => (
+    <View style={styles.goalItem}>
+      <Text style={styles.goalText}>{item}</Text>
+    </View>
+  );
 
   return (
     <View style={styles.container}>
@@ -23,11 +30,12 @@ export default function App() {
         <Button title="Add goal" onPress={handlePress} />
       </View>
       <View style={styles.goalList}>
-        {goalList.map((goalItem) => (
-          <View key={goalItem} style={styles.goalItem}>
-            <Text style={styles.goalText}>{goalItem}</Text>
-          </View>
-        ))}
+        <FlashList
+          data={goalList}
+          renderItem={renderGoalItem}
+          keyExtractor={goalItem => goalItem}
+          estimatedItemSize={32}
+        />
       </View>
       <StatusBar style="auto" />
     </View>
@@ -41,9 +49,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inputContainer: {
+    width: '100%',
+    height: 120,
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc',
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   goalList: {
-    flex: 5,
+    flex: 1,
   },
   goalItem: {
     margin: 8,
