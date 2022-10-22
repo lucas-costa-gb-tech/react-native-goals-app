@@ -23,7 +23,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <GoalInput
-        goalInputValue={goalText}
+        goalValue={goalText}
         onChangeGoalText={setGoalText}
         onAddGoal={handlePress}
       />
