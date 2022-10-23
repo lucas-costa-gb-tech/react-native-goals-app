@@ -1,15 +1,20 @@
+import 'react-native-get-random-values';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { v4 as uuidv4 } from 'uuid';
 
 import { GoalInput, GoalList } from './components';
 
+import type { Goal } from './App.types';
+
 export default function App() {
-  const [goalText, setGoalText] = useState('');
-  const [goalList, setGoalList] = useState([]);
+  const [goalText, setGoalText] = useState<string>('');
+  const [goalList, setGoalList] = useState<Goal[]>([]);
 
   const handlePress = () => {
-    setGoalList(prevGoals => prevGoals.concat(goalText));
+    const goalId = uuidv4();
+    setGoalList(prevGoals => prevGoals.concat({ id: goalId, text: goalText }));
     setGoalText('');
   };
 

@@ -6,7 +6,7 @@ import type { GoalListProps } from './goal-list.types';
 function GoalList({ goalList }: GoalListProps) {
   const renderGoalItem = ({ item }) => (
     <View style={styles.goalItem}>
-      <Text style={styles.goalText}>{item}</Text>
+      <Text style={styles.goalText}>{item.text}</Text>
     </View>
   );
 
@@ -15,7 +15,7 @@ function GoalList({ goalList }: GoalListProps) {
       <FlashList
         data={goalList}
         renderItem={renderGoalItem}
-        keyExtractor={goalItem => goalItem}
+        keyExtractor={goalItem => goalItem.id}
         estimatedItemSize={32}
       />
     </View>
