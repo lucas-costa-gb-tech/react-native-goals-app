@@ -1,13 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 
 import type { GoalListProps } from './goal-list.types';
 
-function GoalList({ goalList }: GoalListProps) {
+function GoalList({ goalList, onDeleteGoal }: GoalListProps) {
   const renderGoalItem = ({ item }) => (
-    <View style={styles.goalItem}>
+    <Pressable
+      style={styles.goalItem}
+      onPress={() => {
+        onDeleteGoal(item.id)
+      }}
+    >
       <Text style={styles.goalText}>{item.text}</Text>
-    </View>
+    </Pressable>
   );
 
   return (

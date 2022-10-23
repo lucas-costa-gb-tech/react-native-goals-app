@@ -12,10 +12,14 @@ export default function App() {
   const [goalText, setGoalText] = useState<string>('');
   const [goalList, setGoalList] = useState<Goal[]>([]);
 
-  const handlePress = () => {
+  const handleAddGoal = () => {
     const goalId = uuidv4();
     setGoalList(prevGoals => prevGoals.concat({ id: goalId, text: goalText }));
     setGoalText('');
+  };
+
+  const handleDeleteGoal = (id: string) => {
+    setGoalList(prevGoals => prevGoals.filter(prevGoal => prevGoal.id !== id));
   };
 
   return (
@@ -23,9 +27,9 @@ export default function App() {
       <GoalInput
         goalValue={goalText}
         onChangeGoalText={setGoalText}
-        onAddGoal={handlePress}
+        onAddGoal={handleAddGoal}
       />
-      <GoalList goalList={goalList} />
+      <GoalList goalList={goalList} onDeleteGoal={handleDeleteGoal}/>
       <StatusBar style="auto" />
     </View>
   );
