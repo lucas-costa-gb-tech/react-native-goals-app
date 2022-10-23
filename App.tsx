@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { FlashList } from '@shopify/flash-list';
+import { StyleSheet, View } from 'react-native';
 
-import { GoalInput } from './components';
+import { GoalInput, GoalList } from './components';
 
 export default function App() {
   const [goalText, setGoalText] = useState('');
@@ -14,12 +13,6 @@ export default function App() {
     setGoalText('');
   };
 
-  const renderGoalItem = ({ item }) => (
-    <View style={styles.goalItem}>
-      <Text style={styles.goalText}>{item}</Text>
-    </View>
-  );
-
   return (
     <View style={styles.container}>
       <GoalInput
@@ -27,14 +20,7 @@ export default function App() {
         onChangeGoalText={setGoalText}
         onAddGoal={handlePress}
       />
-      <View style={styles.goalList}>
-        <FlashList
-          data={goalList}
-          renderItem={renderGoalItem}
-          keyExtractor={goalItem => goalItem}
-          estimatedItemSize={32}
-        />
-      </View>
+      <GoalList goalList={goalList} />
       <StatusBar style="auto" />
     </View>
   );
@@ -42,20 +28,9 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     paddingTop: 54,
     paddingHorizontal: 16,
     flex: 1,
-  },
-  goalList: {
-    flex: 1,
-  },
-  goalItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: '#5e0acc',
-  },
-  goalText: {
-    color: '#ffffff',
   },
 });
