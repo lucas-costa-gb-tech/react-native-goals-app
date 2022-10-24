@@ -6,7 +6,10 @@ import type { GoalListProps } from './goal-list.types';
 function GoalList({ goalList, onDeleteGoal }: GoalListProps) {
   const renderGoalItem = ({ item }) => (
     <Pressable
-      style={styles.goalItem}
+      style={({ pressed }) => ({
+        ...styles.goalItem,
+        backgroundColor: pressed ? '#510aad' : '#5e0acc',
+      })}
       onPress={() => {
         onDeleteGoal(item.id)
       }}
@@ -40,7 +43,6 @@ const styles = StyleSheet.create({
     margin: 8,
     padding: 8,
     borderRadius: 6,
-    backgroundColor: '#5e0acc',
   },
   goalText: {
     color: '#ffffff',
