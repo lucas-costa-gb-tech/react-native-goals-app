@@ -33,6 +33,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Button title="Add new goal" color="#5e0acc" onPress={showModal} />
+      <GoalList goalList={goalList} onDeleteGoal={handleDeleteGoal}/>
       <GoalInputModal
         visible={modalVisible}
         goalValue={goalText}
@@ -40,8 +42,6 @@ export default function App() {
         onAddGoal={handleAddGoal}
         onDismiss={hideModal}
       />
-      <Button title="Add new goal" color="#5e0acc" onPress={showModal} />
-      <GoalList goalList={goalList} onDeleteGoal={handleDeleteGoal}/>
       <StatusBar style="auto" />
     </View>
   );

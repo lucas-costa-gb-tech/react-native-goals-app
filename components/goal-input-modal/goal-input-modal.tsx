@@ -1,4 +1,4 @@
-import { Button, Modal, StyleSheet, TextInput, View } from 'react-native';
+import { Button, Image, Modal, StyleSheet, TextInput, View } from 'react-native';
 
 import type { GoalInputModalProps } from './goal-input-modal.types';
 
@@ -11,17 +11,24 @@ function GoalInputModal({ visible, goalValue, onChangeGoalText, onAddGoal, onDis
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.container}>
-        <View style={styles.textInputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Your course goal!"
-            value={goalValue}
-            onChangeText={onChangeGoalText}
-          />
-        </View>
-        <View style={styles.controlContainer}>
-          <Button title="Cancel" color="#5e0acc" onPress={onDismiss} />
-          <Button title="Add goal" color="#5e0acc" onPress={handleAddGoal} />
+        <View style={styles.contentContainer}>
+          <View style={styles.logoImageContainer}>
+            <Image style={styles.logoImage} source={require('../../assets/logo.png')} />
+          </View>
+          <View style={styles.textInputContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Your course goal!"
+              value={goalValue}
+              onChangeText={onChangeGoalText}
+              placeholderTextColor='#ffffff80'
+              selectionColor='#ffffff80'
+            />
+          </View>
+          <View style={styles.controlContainer}>
+            <Button title="Cancel" color="#ffffff" onPress={onDismiss} />
+            <Button title="Add goal" color="#ffffff" onPress={handleAddGoal} />
+          </View>
         </View>
       </View>
     </Modal>
@@ -31,17 +38,33 @@ function GoalInputModal({ visible, goalValue, onChangeGoalText, onAddGoal, onDis
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
+    backgroundColor: '#5e0acc',
     flex: 1,
     justifyContent: 'center',
+  },
+  contentContainer: {
+    transform: [
+      { translateY: -20, },
+    ],
+  },
+  logoImageContainer: {
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  logoImage: {
+    width: 100,
+    height: 100,
   },
   textInputContainer: {
     marginBottom: 20,
   },
   textInput: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: '#cccccc',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: '#9c67e0',
+    borderRadius: 4,
+    fontSize: 16,
+    color: '#ffffff',
   },
   controlContainer: {
     flexDirection: 'row',
