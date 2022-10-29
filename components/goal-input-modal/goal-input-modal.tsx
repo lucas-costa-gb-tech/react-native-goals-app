@@ -9,25 +9,27 @@ function GoalInputModal({ visible, goalValue, onChangeGoalText, onAddGoal, onDis
   };
 
   return (
-    <Modal visible={visible} animationType="slide">
-      <View style={styles.container}>
-        <View style={styles.contentContainer}>
-          <View style={styles.logoImageContainer}>
-            <Image style={styles.logoImage} source={require('../../assets/logo.png')} />
-          </View>
-          <View style={styles.textInputContainer}>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Your course goal!"
-              value={goalValue}
-              onChangeText={onChangeGoalText}
-              placeholderTextColor='#ffffff80'
-              selectionColor='#ffffff80'
-            />
-          </View>
-          <View style={styles.controlContainer}>
-            <Button title="Cancel" color="#ffffff" onPress={onDismiss} />
-            <Button title="Add goal" color="#ffffff" onPress={handleAddGoal} />
+    <Modal visible={visible} transparent animationType="slide">
+      <View style={styles.overlay}>
+        <View style={styles.container}>
+          <View style={styles.contentContainer}>
+            <View style={styles.logoImageContainer}>
+              <Image style={styles.logoImage} source={require('../../assets/logo.png')} />
+            </View>
+            <View style={styles.textInputContainer}>
+              <TextInput
+                style={styles.textInput}
+                placeholder="Your course goal!"
+                value={goalValue}
+                onChangeText={onChangeGoalText}
+                placeholderTextColor='#ffffff80'
+                selectionColor='#ffffff80'
+              />
+            </View>
+            <View style={styles.controlContainer}>
+              <Button title="Cancel" color="#ffffff" onPress={onDismiss} />
+              <Button title="Add goal" color="#ffffff" onPress={handleAddGoal} />
+            </View>
           </View>
         </View>
       </View>
@@ -36,10 +38,17 @@ function GoalInputModal({ visible, goalValue, onChangeGoalText, onAddGoal, onDis
 }
 
 const styles = StyleSheet.create({
+  overlay: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
   container: {
+    width: 360,
+    height: 400,
     paddingHorizontal: 16,
     backgroundColor: '#5e0acc',
-    flex: 1,
+    borderRadius: 16,
     justifyContent: 'center',
   },
   contentContainer: {
