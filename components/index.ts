@@ -1,2 +1,2 @@
-export { GoalInput } from './goal-input';
+export { GoalInputModal } from './goal-input-modal';
 export { GoalList } from './goal-list';
