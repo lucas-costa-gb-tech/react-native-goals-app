@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 
-import { GoalInputModal, GoalList } from './components';
+import { GoalInputModal, GoalList, Header } from './components';
 
 import type { Goal } from './App.types';
 
@@ -33,7 +33,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Button title="Add new goal" color="#5e0acc" onPress={showModal} />
+      <Header onConfirm={showModal} />
       <GoalList goalList={goalList} onDeleteGoal={handleDeleteGoal}/>
       <GoalInputModal
         visible={modalVisible}
@@ -49,7 +49,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     paddingTop: 54,
     paddingHorizontal: 16,
     flex: 1,
