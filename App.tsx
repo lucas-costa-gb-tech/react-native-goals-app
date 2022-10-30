@@ -42,7 +42,7 @@ export default function App() {
         onAddGoal={handleAddGoal}
         onDismiss={hideModal}
       />
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
     </View>
   );
 }
