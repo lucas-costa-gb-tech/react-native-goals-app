@@ -1,7 +1,7 @@
 import 'react-native-get-random-values';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 
 import { GoalInputModal, GoalList, Header } from './components';
